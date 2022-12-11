@@ -1,6 +1,8 @@
 extends Container
 
 signal lucky_round_change
+signal new_lucky_round
+signal lucky_draw_finished(number)
 
 var block_count = 100
 var lucky_draw_count = 0
@@ -34,25 +36,27 @@ func create_blocks():
 
 func _on_Logo_pressed():
     var state = get_meta('state')
-    print('Logo pressed', state)
-
-    stop_anims()
+    print('Logo pressed ', state)
 
     match state:
         'open':
             set_meta('state', 'waiting')
+            stop_anims()
             play_anim_random_number()
 
         'waiting':
             set_meta('state', 'lucky_draw')
+            stop_anims()
+            lucky_draw_count = 0
             star_lucky_draw()
 
         'lucky_draw':
-            star_lucky_draw()
             pass
 
         'finished':
             set_meta('state', 'open')
+            stop_anims()
+            emit_signal('new_lucky_round')
             play_anim_waiting()
 
 func stop_anims():
@@ -63,7 +67,7 @@ func stop_anims():
         timer.stop()
 
         var anims = block.get_node('AnimationPlayer')
-        anims.stop(true)
+        anims.stop()
 
 func play_anim_random_number():
     var state = get_meta('state')
@@ -130,8 +134,12 @@ func on_luckey_draw_finished(block):
     star_lucky_draw()
 
 func on_flash_finished(_anim_name, block):
-    pass
+    var state = get_meta('state')
+    if not state == 'finished':
+        return
 
+    var number = block.get_meta('number')
+    emit_signal('lucky_draw_finished', number)
 
 func play_anim_waiting():
     var state = get_meta('state')
@@ -162,7 +170,8 @@ func on_delay_waiting_finished(block):
 
     # Play again when block is lastest
     if block.get_meta('index') == block_count - 1:
-        anims.connect('animation_finished', self, 'on_play_anim_waiting_finished')
+        if not anims.is_connected('animation_finished', self, 'on_play_anim_waiting_finished'):
+            anims.connect('animation_finished', self, 'on_play_anim_waiting_finished')
 
 func on_play_anim_waiting_finished(_anim_name):
     play_anim_waiting()
