@@ -1,16 +1,29 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/MagicGame.gd" type="Script" id=1]
 [ext_resource path="res://src/interface/Board.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/logo.png" type="Texture" id=3]
-[ext_resource path="res://assets/board.png" type="Texture" id=4]
+[ext_resource path="res://assets/image/logo.png" type="Texture" id=3]
+[ext_resource path="res://assets/image/board.png" type="Texture" id=4]
 [ext_resource path="res://src/interface/Confetti.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/interface/Lights.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/font/Roboto-Black.ttf" type="DynamicFontData" id=7]
+
+[sub_resource type="DynamicFont" id=1]
+size = 50
+outline_size = 2
+use_filter = true
+font_data = ExtResource( 7 )
 
 [node name="MagicGame" type="Node"]
 script = ExtResource( 1 )
 
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
 [node name="Confetti" parent="." instance=ExtResource( 5 )]
+margin_right = 2316.0
+stretch_mode = 4
 
 [node name="Frame" type="TextureRect" parent="."]
 anchor_left = 0.5
@@ -44,13 +57,28 @@ margin_top = 40.5
 margin_right = -30.0
 margin_bottom = 20.5
 
-[node name="Logo" type="TextureRect" parent="Frame"]
-anchor_left = 1.0
-anchor_top = 1.0
+[node name="Logo" type="TextureButton" parent="Frame"]
+anchor_left = 0.727979
+anchor_top = 0.826425
+anchor_right = 0.727979
+anchor_bottom = 0.826425
+margin_right = 229.0
+margin_bottom = 85.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Round" type="Label" parent="."]
 anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -318.0
-margin_top = -134.5
-margin_right = -89.0
-margin_bottom = -49.5
-texture = ExtResource( 3 )
+margin_bottom = 94.0
+custom_colors/font_color = Color( 0.0784314, 0.443137, 0.847059, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "Vòng quay giải thứ nhất"
+align = 1
+valign = 1
+uppercase = true
+
+[connection signal="lucky_round_change" from="Frame/Board" to="." method="_on_Board_lucky_round_change"]
+[connection signal="pressed" from="Frame/Logo" to="Frame/Board" method="_on_Logo_pressed"]

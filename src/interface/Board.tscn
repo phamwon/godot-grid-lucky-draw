@@ -2,7 +2,7 @@
 
 [ext_resource path="res://src/interface/Board.gd" type="Script" id=2]
 
-[node name="Board" type="GridContainer" groups=["blocks"]]
+[node name="Board" type="GridContainer"]
 margin_right = 44.0
 margin_bottom = 32.0
 columns = 13
