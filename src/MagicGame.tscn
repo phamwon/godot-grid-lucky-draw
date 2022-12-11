@@ -23,6 +23,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="Confetti" parent="." instance=ExtResource( 5 )]
+margin_right = 0.0
 stretch_mode = 4
 
 [node name="Frame" type="TextureRect" parent="."]
@@ -81,7 +82,14 @@ valign = 1
 uppercase = true
 
 [node name="LuckyBlock" parent="." instance=ExtResource( 8 )]
-visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -120.0
+margin_top = -120.0
+margin_right = 120.0
+margin_bottom = 120.0
 
 [connection signal="lucky_draw_finished" from="Frame/Board" to="." method="_on_Board_lucky_draw_finished"]
 [connection signal="lucky_round_change" from="Frame/Board" to="." method="_on_Board_lucky_round_change"]

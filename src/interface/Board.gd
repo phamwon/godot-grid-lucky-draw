@@ -67,7 +67,9 @@ func stop_anims():
         timer.stop()
 
         var anims = block.get_node('AnimationPlayer')
-        anims.stop()
+        anims.stop(true)
+        
+        anims.play('RESET')
 
 func play_anim_random_number():
     var state = get_meta('state')

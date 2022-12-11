@@ -124,6 +124,18 @@ tracks/3/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath(".:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
 
 [sub_resource type="Animation" id=3]
 length = 0.001
@@ -180,7 +192,7 @@ tracks/4/path = NodePath("Icon:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
-tracks/4/enabled = true
+tracks/4/enabled = false
 tracks/4/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
@@ -192,7 +204,7 @@ tracks/5/path = NodePath("Number:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
-tracks/5/enabled = true
+tracks/5/enabled = false
 tracks/5/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
@@ -395,7 +407,10 @@ script = ExtResource( 2 )
 [node name="Background" type="TextureRect" parent="."]
 margin_right = 80.0
 margin_bottom = 80.0
+rect_min_size = Vector2( 80, 80 )
+rect_pivot_offset = Vector2( 40, 40 )
 texture = ExtResource( 1 )
+expand = true
 
 [node name="Icon" type="TextureRect" parent="."]
 margin_left = 12.0
