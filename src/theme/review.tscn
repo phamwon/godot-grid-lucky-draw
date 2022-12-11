@@ -1,0 +1,24 @@
+[gd_scene format=2]
+
+[node name="Theme" type="Control"]
+
+[node name="Button-Normal" type="Button" parent="."]
+margin_right = 100.0
+margin_bottom = 100.0
+focus_mode = 0
+enabled_focus_mode = 0
+
+[node name="Button-Forus" type="Button" parent="."]
+margin_left = 116.0
+margin_right = 216.0
+margin_bottom = 100.0
+shortcut_in_tooltip = false
+
+[node name="Button-Pressed" type="Button" parent="."]
+margin_left = 229.0
+margin_right = 329.0
+margin_bottom = 100.0
+focus_mode = 0
+toggle_mode = true
+pressed = true
+enabled_focus_mode = 0

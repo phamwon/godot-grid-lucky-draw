@@ -1,17 +1,17 @@
-extends Node2D
+extends Container
 
-var Block = preload("res://src/objects/Block.tscn")
+var block_count = 100
 
 func _ready():
     create_blocks()
+    play_anim_waiting()
 
 func create_blocks():
-    var block
+    for _i in range(100):
+        var block = $Block.create_instance()
+        block.add_to_group("blocks")
 
-    for i in range(100):
-        block = Block.instance()
+#    queue_sort()
 
-        $Grid.add_child(block)
-        $Grid.add_to_group("blocks")
-
-    $Grid.queue_sort()
+func play_anim_waiting():
+    pass
