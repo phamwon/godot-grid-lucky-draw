@@ -1,59 +1,76 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://assets/image/block.png" type="Texture" id=1]
+[ext_resource path="res://assets/image/popup.png" type="Texture" id=1]
 [ext_resource path="res://assets/font/Roboto-Black.ttf" type="DynamicFontData" id=2]
 
 [sub_resource type="DynamicFont" id=10]
-size = 100
+size = 120
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=11]
+size = 40
 use_filter = true
 font_data = ExtResource( 2 )
 
 [sub_resource type="Animation" id=8]
 resource_name = "LuckyDraw"
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:rect_scale")
+tracks/0/path = NodePath("Popup/Number:modulate")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 0.170755, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0.3, 0.3 ), Vector2( 1, 1 ) ]
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Background:modulate")
-tracks/1/interp = 2
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 0.992157, 0.823529, 0.0431373, 1 ) ]
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Number:modulate")
+tracks/2/path = NodePath("Popup:rect_scale")
 tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
 "times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"transitions": PoolRealArray( -3.03143, -3.03143 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+"values": [ Vector2( 1e-05, 1e-05 ), Vector2( 1, 1 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath(".:visible")
-tracks/3/interp = 1
+tracks/3/path = NodePath("Mask:color")
+tracks/3/interp = 2
 tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0 ),
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 0.588235 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Popup:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.1 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ true ]
@@ -62,7 +79,7 @@ tracks/3/keys = {
 [sub_resource type="Animation" id=9]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("Number:modulate")
+tracks/0/path = NodePath("Popup/Number:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -74,19 +91,19 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath(".:rect_scale")
+tracks/1/path = NodePath(".:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
 "times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 0.170755 ),
+"transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 1, 1 ) ]
+"values": [ false ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Background:modulate")
+tracks/2/path = NodePath("Mask:color")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -95,10 +112,10 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
+"values": [ Color( 0, 0, 0, 0 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath(".:visible")
+tracks/3/path = NodePath("Popup:rect_scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -107,34 +124,67 @@ tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Popup:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
 "values": [ false ]
 }
 
-[node name="LuckyBlock" type="CenterContainer"]
+[node name="LuckyPopup" type="Popup"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 240, 240 )
+rect_pivot_offset = Vector2( 239, 329 )
+input_pass_on_modal_close_click = false
+popup_exclusive = true
+
+[node name="Mask" type="ColorRect" parent="."]
+margin_right = 1158.0
+margin_bottom = 872.0
+rect_pivot_offset = Vector2( 1887, 590 )
+color = Color( 0, 0, 0, 0 )
+
+[node name="Popup" type="TextureRect" parent="."]
 visible = false
-margin_right = 240.0
-margin_bottom = 240.0
-rect_min_size = Vector2( 240, 240 )
-rect_pivot_offset = Vector2( 120, 120 )
-
-[node name="Background" type="TextureRect" parent="."]
-margin_right = 240.0
-margin_bottom = 240.0
-rect_min_size = Vector2( 240, 240 )
-rect_pivot_offset = Vector2( 120, 120 )
+margin_left = 320.0
+margin_top = 137.0
+margin_right = 838.0
+margin_bottom = 611.0
+rect_scale = Vector2( 1e-05, 1e-05 )
+rect_pivot_offset = Vector2( 240, 258 )
 texture = ExtResource( 1 )
-expand = true
 
-[node name="Number" type="Label" parent="."]
-margin_left = 33.0
-margin_top = 53.0
-margin_right = 207.0
-margin_bottom = 186.0
+[node name="Number" type="Label" parent="Popup"]
+margin_left = 49.0
+margin_top = 263.0
+margin_right = 429.0
+margin_bottom = 422.0
 custom_colors/font_color = Color( 0.0784314, 0.443137, 0.847059, 1 )
 custom_fonts/font = SubResource( 10 )
 text = "777"
 align = 1
 valign = 1
+
+[node name="Round" type="Label" parent="Popup"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -209.0
+margin_top = 216.0
+margin_right = 172.0
+margin_bottom = 269.0
+custom_colors/font_color = Color( 0.180392, 0.180392, 0.180392, 1 )
+custom_fonts/font = SubResource( 11 )
+text = "Vòng 1"
+align = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/LuckyDraw = SubResource( 8 )

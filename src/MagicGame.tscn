@@ -1,19 +1,14 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://src/MagicGame.gd" type="Script" id=1]
+[ext_resource path="res://src/MagicGame.vs" type="Script" id=1]
 [ext_resource path="res://src/interface/Board.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/image/logo.png" type="Texture" id=3]
 [ext_resource path="res://assets/image/board.png" type="Texture" id=4]
 [ext_resource path="res://src/interface/Confetti.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/interface/Lights.tscn" type="PackedScene" id=6]
-[ext_resource path="res://assets/font/Roboto-Black.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://src/interface/Title.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/objects/LuckyBlock.tscn" type="PackedScene" id=8]
-
-[sub_resource type="DynamicFont" id=1]
-size = 50
-outline_size = 2
-use_filter = true
-font_data = ExtResource( 7 )
+[ext_resource path="res://src/objects/LuckyBlock.vs" type="Script" id=9]
 
 [node name="MagicGame" type="Node"]
 script = ExtResource( 1 )
@@ -21,9 +16,12 @@ script = ExtResource( 1 )
 [node name="Background" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Confetti" parent="." instance=ExtResource( 5 )]
-margin_right = 0.0
+anchor_right = 0.0
 stretch_mode = 4
 
 [node name="Frame" type="TextureRect" parent="."]
@@ -36,6 +34,9 @@ margin_top = -341.0
 margin_right = 579.0
 margin_bottom = 431.0
 texture = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="TopLights" parent="Frame" instance=ExtResource( 6 )]
 margin_left = 9.0
@@ -71,27 +72,13 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Round" type="Label" parent="."]
-anchor_right = 1.0
-margin_bottom = 94.0
-custom_colors/font_color = Color( 0.0784314, 0.443137, 0.847059, 1 )
-custom_fonts/font = SubResource( 1 )
-text = "Vòng quay giải thứ nhất"
-align = 1
-valign = 1
-uppercase = true
+[node name="Title" parent="." instance=ExtResource( 7 )]
 
-[node name="LuckyBlock" parent="." instance=ExtResource( 8 )]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -120.0
-margin_top = -120.0
-margin_right = 120.0
-margin_bottom = 120.0
+[node name="LuckyPopup" parent="." instance=ExtResource( 8 )]
+script = ExtResource( 9 )
 
-[connection signal="lucky_draw_finished" from="Frame/Board" to="." method="_on_Board_lucky_draw_finished"]
-[connection signal="lucky_round_change" from="Frame/Board" to="." method="_on_Board_lucky_round_change"]
-[connection signal="new_lucky_round" from="Frame/Board" to="." method="_on_Board_new_lucky_round"]
+[connection signal="lucky_draw_finished" from="Frame/Board" to="LuckyPopup" method="_on_Board_lucky_draw_finished"]
+[connection signal="lucky_round_change" from="Frame/Board" to="Title" method="_on_Board_lucky_round_change"]
+[connection signal="new_lucky_round" from="Frame/Board" to="LuckyPopup" method="_on_Board_new_lucky_round"]
 [connection signal="pressed" from="Frame/Logo" to="Frame/Board" method="_on_Logo_pressed"]
+[connection signal="change_round" from="Title" to="Frame/Board" method="_on_Title_change_round"]

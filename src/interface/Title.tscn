@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/fonts/Title.tres" type="DynamicFont" id=1]
+[ext_resource path="res://src/interface/Title.vs" type="Script" id=2]
+
+[node name="Title" type="Button"]
+anchor_right = 1.0
+margin_bottom = 94.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+custom_colors/font_color = Color( 0.0784314, 0.443137, 0.847059, 1 )
+enabled_focus_mode = 0
+flat = true
+script = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -266.5
+margin_top = -33.5
+margin_right = 266.5
+margin_bottom = 33.5
+custom_colors/font_color = Color( 0.0431373, 0.423529, 0.839216, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "Vòng quay giải thứ nhất"
+
+[connection signal="pressed" from="." to="." method="_on_Title_pressed"]

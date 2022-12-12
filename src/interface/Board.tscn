@@ -9,5 +9,3 @@ columns = 13
 script = ExtResource( 2 )
 
 [node name="Block" parent="." instance_placeholder="res://src/objects/Block.tscn"]
-margin_right = 501.0
-margin_bottom = 501.0
