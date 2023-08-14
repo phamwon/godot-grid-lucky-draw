@@ -1,14 +1,15 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/MagicGame.vs" type="Script" id=1]
 [ext_resource path="res://src/interface/Board.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/image/logo.png" type="Texture" id=3]
-[ext_resource path="res://assets/image/board.png" type="Texture" id=4]
+[ext_resource path="res://assets/image/frame-bg.jpg" type="Texture" id=4]
 [ext_resource path="res://src/interface/Confetti.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/interface/Lights.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/interface/Title.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/objects/LuckyBlock.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/objects/LuckyBlock.vs" type="Script" id=9]
+[ext_resource path="res://assets/image/round.png" type="Texture" id=10]
 
 [node name="MagicGame" type="Node"]
 script = ExtResource( 1 )
@@ -30,13 +31,10 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -579.0
-margin_top = -341.0
+margin_top = -436.0
 margin_right = 579.0
-margin_bottom = 431.0
+margin_bottom = 450.0
 texture = ExtResource( 4 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="TopLights" parent="Frame" instance=ExtResource( 6 )]
 margin_left = 9.0
@@ -45,34 +43,49 @@ margin_right = 1144.0
 margin_bottom = 24.0
 
 [node name="BottomLights" parent="Frame" instance=ExtResource( 6 )]
+visible = false
 margin_left = 15.0
-margin_top = 741.0
+margin_top = 851.0
 margin_right = 1150.0
-margin_bottom = 759.0
+margin_bottom = 869.0
 direction = "right"
 
 [node name="Board" parent="Frame" instance=ExtResource( 2 )]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 30.0
-margin_top = 40.5
-margin_right = -30.0
-margin_bottom = 20.5
+margin_left = 280.0
+margin_top = 248.0
+margin_right = -170.0
+margin_bottom = -43.0
 
-[node name="Logo" type="TextureButton" parent="Frame"]
-anchor_left = 0.727979
-anchor_top = 0.826425
-anchor_right = 0.727979
-anchor_bottom = 0.826425
-margin_right = 229.0
-margin_bottom = 85.0
+[node name="TextureRect" type="TextureRect" parent="Frame"]
+margin_left = 764.0
+margin_top = 73.0
+margin_right = 1157.0
+margin_bottom = 218.0
+texture = ExtResource( 10 )
+
+[node name="Title" parent="." instance=ExtResource( 7 )]
+margin_left = 794.0
+margin_top = 94.0
+margin_right = -3.0
+margin_bottom = 181.0
+
+[node name="Logo" type="TextureButton" parent="."]
+anchor_left = 0.836788
+anchor_top = 0.838303
+anchor_right = 0.836788
+anchor_bottom = 0.838303
+margin_left = -1.0
+margin_top = 16.0
+margin_right = 228.0
+margin_bottom = 101.0
+rect_scale = Vector2( 0.7, 0.7 )
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
-
-[node name="Title" parent="." instance=ExtResource( 7 )]
 
 [node name="LuckyPopup" parent="." instance=ExtResource( 8 )]
 script = ExtResource( 9 )
@@ -80,5 +93,5 @@ script = ExtResource( 9 )
 [connection signal="lucky_draw_finished" from="Frame/Board" to="LuckyPopup" method="_on_Board_lucky_draw_finished"]
 [connection signal="lucky_round_change" from="Frame/Board" to="Title" method="_on_Board_lucky_round_change"]
 [connection signal="new_lucky_round" from="Frame/Board" to="LuckyPopup" method="_on_Board_new_lucky_round"]
-[connection signal="pressed" from="Frame/Logo" to="Frame/Board" method="_on_Logo_pressed"]
 [connection signal="change_round" from="Title" to="Frame/Board" method="_on_Title_change_round"]
+[connection signal="pressed" from="Logo" to="Frame/Board" method="_on_Logo_pressed"]
