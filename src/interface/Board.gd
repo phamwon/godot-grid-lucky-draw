@@ -12,6 +12,7 @@ var lucky_draw_count := 0
 var current_block_id = null
 var lucky_block_distance = null
 
+
 func _ready():
 	set_lucky_round(1)
 	create_list_number()
@@ -83,22 +84,25 @@ func create_blocks():
 
 		block.add_to_group("blocks")
 
+
 func generate_lucky_block_distance():
-	randomize()	
+	randomize()
 
 	var lucky_round = get_meta("lucky_round")
 
-	if (lucky_round == 1):
-		lucky_block_distance = 75 + randi() % 50
-	elif (lucky_round == 2):
-		lucky_block_distance = 125 + randi() % 75
-	elif (lucky_round == 3):
-		lucky_block_distance = 150 + randi() % 100
+	if lucky_round == 1:
+		lucky_block_distance = floor(block_count * 2 + randi() % block_count)
+	elif lucky_round == 2:
+		lucky_block_distance = floor(block_count * 3 + randi() % block_count)
+	elif lucky_round == 3:
+		lucky_block_distance = floor(block_count * 4 + randi() % block_count)
+
 
 func generate_lucky_block_extra_steps():
 	randomize()
 
 	lucky_block_distance = 10 + randi() % 10
+
 
 func _on_Logo_pressed():
 	var state = get_meta("state")
@@ -180,7 +184,7 @@ func star_lucky_draw():
 		next_block_id = 0
 	else:
 		next_block_id = current_block_id + 1
-	
+
 	var block_found = false
 
 	while block_found == false and next_block_id != current_block_id:
@@ -257,7 +261,7 @@ func on_flash_finished(_anim_name, block):
 		return
 
 	var lucky_round = get_meta("lucky_round")
-	var roundText = block.get_node("Background/Round")
+	var roundText = block.get_node("Round")
 
 	roundText.visible = true
 	roundText.text = "V�ng " + str(lucky_round)
@@ -324,17 +328,17 @@ func _on_Block_request_new_number(_index):
 func _on_Title_change_player_number(num_of_player):
 	block_count = num_of_player
 	block_use = num_of_player
-	
-	var blocks = get_tree().get_nodes_in_group('blocks')
+
+	var blocks = get_tree().get_nodes_in_group("blocks")
 	for block in blocks:
-		var timer = block.get_node('Timer') as Timer
+		var timer = block.get_node("Timer") as Timer
 		timer.stop()
 
-		var anims = block.get_node('AnimationPlayer')
+		var anims = block.get_node("AnimationPlayer")
 		anims.stop(true)
 
-		anims.play('RESET')
-		
-		block.remove_from_group('blocks')
+		anims.play("RESET")
+
+		block.remove_from_group("blocks")
 		block.queue_free()
 	_ready()
