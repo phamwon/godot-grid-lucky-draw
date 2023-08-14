@@ -334,7 +334,7 @@ func _on_Block_request_new_number(_index):
 	random_number()
 
 
-func _on_Title_change_player_number(num_of_player):
+func _on_DebugTool_change_player_number(num_of_player):
 	block_count = num_of_player
 	block_use = num_of_player
 	
