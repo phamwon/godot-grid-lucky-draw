@@ -319,3 +319,21 @@ func _on_Title_change_round():
 
 func _on_Block_request_new_number(_index):
 	random_number()
+
+
+func _on_Title_change_player_number(num_of_player):
+	block_count = num_of_player
+	
+	var blocks = get_tree().get_nodes_in_group('blocks')
+	for block in blocks:
+		var timer = block.get_node('Timer') as Timer
+		timer.stop()
+
+		var anims = block.get_node('AnimationPlayer')
+		anims.stop(true)
+
+		anims.play('RESET')
+		
+		block.remove_from_group('blocks')
+		block.queue_free()
+	_ready()
