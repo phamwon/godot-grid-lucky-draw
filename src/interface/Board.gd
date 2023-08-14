@@ -323,6 +323,7 @@ func _on_Block_request_new_number(_index):
 
 func _on_Title_change_player_number(num_of_player):
 	block_count = num_of_player
+	block_use = num_of_player
 	
 	var blocks = get_tree().get_nodes_in_group('blocks')
 	for block in blocks:
