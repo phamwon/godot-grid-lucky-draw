@@ -22,8 +22,9 @@ margin_left = -266.5
 margin_top = -33.5
 margin_right = 266.5
 margin_bottom = 33.5
-custom_colors/font_color = Color( 0.0431373, 0.423529, 0.839216, 1 )
+custom_colors/font_color = Color( 0.698039, 0.458824, 0.219608, 1 )
 custom_fonts/font = ExtResource( 1 )
-text = "Vòng quay giải thứ nhất"
+text = "VÒNG 1"
+align = 1
 
 [connection signal="pressed" from="." to="." method="_on_Title_pressed"]

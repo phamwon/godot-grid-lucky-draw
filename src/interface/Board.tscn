@@ -5,7 +5,8 @@
 [node name="Board" type="GridContainer"]
 margin_right = 44.0
 margin_bottom = 32.0
-columns = 13
+rect_scale = Vector2( 0.7, 0.7 )
+columns = 10
 script = ExtResource( 2 )
 
 [node name="Block" parent="." instance_placeholder="res://src/objects/Block.tscn"]
