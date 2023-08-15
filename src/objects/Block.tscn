@@ -441,6 +441,7 @@ expand = true
 
 [node name="ShineBG" type="TextureRect" parent="."]
 visible = false
+modulate = Color( 1, 1, 1, 0 )
 margin_left = -25.0
 margin_top = -24.0
 margin_right = 62.0
