@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://src/MagicGame.vs" type="Script" id=1]
 [ext_resource path="res://src/interface/Board.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://assets/image/round.png" type="Texture" id=10]
 [ext_resource path="res://src/interface/DebugTool.tscn" type="PackedScene" id=11]
 [ext_resource path="res://assets/image/bg-color.jpg" type="Texture" id=12]
+[ext_resource path="res://src/Fullscreen.gd" type="Script" id=13]
 
 [node name="MagicGame" type="Node"]
 script = ExtResource( 1 )
@@ -38,6 +39,7 @@ margin_left = -579.0
 margin_top = -436.0
 margin_right = 579.0
 margin_bottom = 436.0
+script = ExtResource( 13 )
 
 [node name="BgLeft" type="TextureRect" parent="Container"]
 anchor_top = 0.5
