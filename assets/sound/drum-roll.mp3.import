@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/drum-roll.mp3-01871c054e53938b23918d89af15ed88.mp3str"
+
+[deps]
+
+source_file="res://assets/sound/drum-roll.mp3"
+dest_files=[ "res://.import/drum-roll.mp3-01871c054e53938b23918d89af15ed88.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

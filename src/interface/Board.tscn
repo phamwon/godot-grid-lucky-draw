@@ -10,3 +10,6 @@ columns = 10
 script = ExtResource( 2 )
 
 [node name="Block" parent="." instance_placeholder="res://src/objects/Block.tscn"]
+
+[node name="Sound" type="AudioStreamPlayer" parent="."]
+bus = "Sound"
