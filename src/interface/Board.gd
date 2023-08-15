@@ -8,6 +8,7 @@ var block_use := 100
 var block_count := 100
 var list_number: Array
 var lucky_draw_count := 0
+var list_rewarded: Array = []
 
 var current_block_id = null
 var lucky_block_distance = null
@@ -57,7 +58,18 @@ func random_number():
 			continue
 
 		block.set_meta("number", list_number[x])
-		x += 1
+
+		if list_rewarded.has(list_number[x]):
+			# handle reset number of player
+			block.set_meta("is_selected", true)
+			var numberLabel = block.get_node("Number")
+			numberLabel.text = str(list_number[x])
+			var anims = block.get_node("AnimationPlayer")
+			anims.play("Flash")
+
+			list_number.erase(list_number[x])
+		else:
+			x += 1
 
 	yield(get_tree().create_timer(1.9), "timeout")
 	random_number()
@@ -123,9 +135,10 @@ func _on_Logo_pressed():
 			star_lucky_draw()
 
 		"lucky_draw":
+			set_meta("state", "waiting")
 			stop_anims()
-			lucky_draw_count = 0
-			star_lucky_draw()
+			random_number()
+			play_anim_random_number()
 
 		"finished":
 			set_meta("state", "open")
@@ -270,6 +283,7 @@ func on_flash_finished(_anim_name, block):
 
 	var number = block.get_meta("number")
 
+	list_rewarded.append(number)
 	list_number.erase(number)
 
 	print(list_number)
@@ -325,7 +339,7 @@ func _on_Block_request_new_number(_index):
 	random_number()
 
 
-func _on_Title_change_player_number(num_of_player):
+func _on_DebugTool_change_player_number(num_of_player):
 	block_count = num_of_player
 	block_use = num_of_player
 
