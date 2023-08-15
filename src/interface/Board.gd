@@ -138,8 +138,8 @@ func _on_Logo_pressed():
 			set_meta("state", "waiting")
 			stop_anims()
 			random_number()
+			yield(get_tree().create_timer(0.1), "timeout")
 			play_anim_random_number()
-
 		"finished":
 			set_meta("state", "open")
 			stop_anims()
@@ -181,6 +181,7 @@ func play_anim_random_number():
 			continue
 
 		var anims = block.get_node("AnimationPlayer")
+		anims.stop(true)
 		anims.play("RandomNumber")
 
 
@@ -273,11 +274,16 @@ func on_flash_finished(_anim_name, block):
 	if not state == "finished":
 		return
 
-	var lucky_round = get_meta("lucky_round")
+	var lucky_round = str(get_meta("lucky_round"))
 	var roundText = block.get_node("Round")
+	var star_text = lucky_round
+	
+	if (lucky_round == "3"):
+		lucky_round = "Đặc Biệt"
+		star_text = "ĐB"
 
 	roundText.visible = true
-	roundText.text = "V�ng " + str(lucky_round)
+	roundText.text = "Vòng " + star_text
 
 	block.set_meta("is_selected", true)
 
@@ -343,16 +349,23 @@ func _on_DebugTool_change_player_number(num_of_player):
 	block_count = num_of_player
 	block_use = num_of_player
 
+	list_rewarded = []
+	set_meta("state", "debug_reset")
+
 	var blocks = get_tree().get_nodes_in_group("blocks")
 	for block in blocks:
 		var timer = block.get_node("Timer") as Timer
 		timer.stop()
 
+		block.set_meta("is_selected", false)
+
 		var anims = block.get_node("AnimationPlayer")
 		anims.stop(true)
 
 		anims.play("RESET")
-
 		block.remove_from_group("blocks")
 		block.queue_free()
+
+	yield(get_tree().create_timer(0.1), "timeout")
+
 	_ready()
