@@ -27,28 +27,4 @@ custom_fonts/font = ExtResource( 1 )
 text = "VÒNG 1"
 align = 1
 
-[node name="TextEdit" type="TextEdit" parent="."]
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-margin_left = -85.0
-margin_top = 48.0
-margin_bottom = 107.0
-custom_fonts/font = ExtResource( 1 )
-text = "100"
-syntax_highlighting = true
-
-[node name="OKButton" type="Button" parent="."]
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-margin_left = -85.0
-margin_top = 109.0
-margin_bottom = 168.0
-custom_fonts/font = ExtResource( 1 )
-text = "OK"
-
 [connection signal="pressed" from="." to="." method="_on_Title_pressed"]
-[connection signal="pressed" from="OKButton" to="." method="_on_OKButton_pressed"]

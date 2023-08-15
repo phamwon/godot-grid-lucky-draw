@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://src/MagicGame.vs" type="Script" id=1]
 [ext_resource path="res://src/interface/Board.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://src/objects/LuckyBlock.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/objects/LuckyBlock.vs" type="Script" id=9]
 [ext_resource path="res://assets/image/round.png" type="Texture" id=10]
+[ext_resource path="res://src/interface/DebugTool.tscn" type="PackedScene" id=11]
 
 [node name="MagicGame" type="Node"]
 script = ExtResource( 1 )
@@ -22,6 +23,7 @@ __meta__ = {
 }
 
 [node name="Confetti" parent="." instance=ExtResource( 5 )]
+visible = false
 anchor_right = 0.0
 stretch_mode = 4
 
@@ -65,21 +67,21 @@ margin_right = 1157.0
 margin_bottom = 218.0
 texture = ExtResource( 10 )
 
-[node name="Title" parent="." instance=ExtResource( 7 )]
+[node name="Title" parent="Frame" instance=ExtResource( 7 )]
 margin_left = 794.0
 margin_top = 94.0
 margin_right = -3.0
 margin_bottom = 181.0
 
-[node name="Logo" type="TextureButton" parent="."]
+[node name="Logo" type="TextureButton" parent="Frame"]
 anchor_left = 0.836788
 anchor_top = 0.838303
 anchor_right = 0.836788
 anchor_bottom = 0.838303
 margin_left = -1.0
-margin_top = 16.0
+margin_top = 4.26373
 margin_right = 228.0
-margin_bottom = 101.0
+margin_bottom = 89.2637
 rect_scale = Vector2( 0.7, 0.7 )
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource( 3 )
@@ -87,12 +89,18 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="LuckyPopup" parent="." instance=ExtResource( 8 )]
+[node name="LuckyPopup" parent="Frame" instance=ExtResource( 8 )]
 script = ExtResource( 9 )
 
-[connection signal="lucky_draw_finished" from="Frame/Board" to="LuckyPopup" method="_on_Board_lucky_draw_finished"]
-[connection signal="lucky_round_change" from="Frame/Board" to="Title" method="_on_Board_lucky_round_change"]
-[connection signal="new_lucky_round" from="Frame/Board" to="LuckyPopup" method="_on_Board_new_lucky_round"]
-[connection signal="change_player_number" from="Title" to="Frame/Board" method="_on_Title_change_player_number"]
-[connection signal="change_round" from="Title" to="Frame/Board" method="_on_Title_change_round"]
-[connection signal="pressed" from="Logo" to="Frame/Board" method="_on_Logo_pressed"]
+[node name="DebugTool" parent="Frame" instance=ExtResource( 11 )]
+margin_left = 469.0
+margin_top = 178.0
+margin_right = 684.0
+margin_bottom = 218.0
+
+[connection signal="lucky_draw_finished" from="Frame/Board" to="Frame/LuckyPopup" method="_on_Board_lucky_draw_finished"]
+[connection signal="lucky_round_change" from="Frame/Board" to="Frame/Title" method="_on_Board_lucky_round_change"]
+[connection signal="new_lucky_round" from="Frame/Board" to="Frame/LuckyPopup" method="_on_Board_new_lucky_round"]
+[connection signal="change_round" from="Frame/Title" to="Frame/Board" method="_on_Title_change_round"]
+[connection signal="pressed" from="Frame/Logo" to="Frame/Board" method="_on_Logo_pressed"]
+[connection signal="change_player_number" from="Frame/DebugTool" to="Frame/Board" method="_on_DebugTool_change_player_number"]

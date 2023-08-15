@@ -161,12 +161,13 @@ margin_top = -1.0
 margin_right = 1099.0
 margin_bottom = 871.0
 rect_scale = Vector2( 1e-05, 1e-05 )
-rect_pivot_offset = Vector2( 240, 258 )
+rect_pivot_offset = Vector2( 525.5, 436 )
 texture = ExtResource( 3 )
 
 [node name="TextureRect" type="TextureRect" parent="Popup"]
 margin_right = 40.0
 margin_bottom = 40.0
+rect_pivot_offset = Vector2( 515, 436 )
 texture = ExtResource( 1 )
 
 [node name="Number" type="Label" parent="Popup"]
