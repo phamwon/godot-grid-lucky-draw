@@ -14,7 +14,7 @@ config/name="Lucky Draw Grid"
 run/main_scene="res://src/MagicGame.tscn"
 boot_splash/image="res://assets/image/logo.png"
 boot_splash/fullsize=false
-boot_splash/bg_color=Color( 1, 1, 1, 1 )
+boot_splash/bg_color=Color( 0.317647, 0.00392157, 0.0392157, 1 )
 config/icon="res://icon.png"
 
 [debug]
@@ -25,6 +25,8 @@ gdscript/completion/autocomplete_setters_and_getters=true
 
 window/size/width=1158
 window/size/height=872
+window/size/test_width=1366
+window/size/test_height=750
 window/dpi/allow_hidpi=true
 window/per_pixel_transparency/allowed=true
 window/per_pixel_transparency/enabled=true

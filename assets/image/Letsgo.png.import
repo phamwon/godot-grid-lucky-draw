@@ -1,0 +1,35 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/Letsgo.png-864b4b30368d3cb0a94a049fc18e5e56.stex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://assets/image/Letsgo.png"
+dest_files=[ "res://.import/Letsgo.png-864b4b30368d3cb0a94a049fc18e5e56.stex" ]
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=true
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+process/normal_map_invert_y=false
+stream=false
+size_limit=0
+detect_3d=true
+svg/scale=1.0
