@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://src/MagicGame.vs" type="Script" id=1]
 [ext_resource path="res://src/interface/Board.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://src/objects/LuckyBlock.vs" type="Script" id=9]
 [ext_resource path="res://assets/image/round.png" type="Texture" id=10]
 [ext_resource path="res://src/interface/DebugTool.tscn" type="PackedScene" id=11]
+[ext_resource path="res://assets/sound/music.mp3" type="AudioStream" id=12]
 
 [node name="MagicGame" type="Node"]
 script = ExtResource( 1 )
@@ -109,6 +110,11 @@ margin_top = -436.0
 margin_right = 579.0
 margin_bottom = 436.0
 script = ExtResource( 9 )
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+autoplay = true
+bus = "Music"
 
 [connection signal="lucky_draw_finished" from="Container/Frame/Board" to="Container/LuckyPopup" method="_on_Board_lucky_draw_finished"]
 [connection signal="lucky_round_change" from="Container/Frame/Board" to="Container/Frame/Title" method="_on_Board_lucky_round_change"]

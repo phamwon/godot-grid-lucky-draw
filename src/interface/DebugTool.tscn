@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://src/fonts/Title.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/interface/DebugTool.gd" type="Script" id=2]
+[ext_resource path="res://assets/image/music-on.png" type="Texture" id=3]
+[ext_resource path="res://assets/image/sound-on.png" type="Texture" id=4]
 
 [sub_resource type="StyleBoxEmpty" id=2]
 
@@ -12,6 +14,16 @@
 [sub_resource type="StyleBoxEmpty" id=5]
 
 [sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=6]
+
+[sub_resource type="StyleBoxEmpty" id=7]
+
+[sub_resource type="StyleBoxEmpty" id=8]
+
+[sub_resource type="StyleBoxEmpty" id=9]
+
+[sub_resource type="StyleBoxEmpty" id=10]
 
 [node name="DebugTool" type="Button"]
 margin_right = 246.0
@@ -26,6 +38,7 @@ toggle_mode = true
 script = ExtResource( 2 )
 
 [node name="Control" type="Control" parent="."]
+visible = false
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -51,36 +64,45 @@ margin_bottom = 118.0
 custom_fonts/font = ExtResource( 1 )
 text = "OK"
 
-[node name="Info" type="Label" parent="Control"]
+[node name="Music" type="Button" parent="Control"]
 anchor_left = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -101.0
+margin_left = -45.0
 margin_top = 118.0
-margin_right = 109.0
-margin_bottom = 192.0
-
-[node name="ModifyRewarded" type="TextEdit" parent="Control"]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -220.0
-margin_top = 182.0
-margin_right = 223.0
-margin_bottom = 241.0
+margin_right = 45.0
+margin_bottom = 208.0
+rect_pivot_offset = Vector2( 51, 48 )
 custom_fonts/font = ExtResource( 1 )
-text = "100"
-syntax_highlighting = true
+custom_styles/hover = SubResource( 6 )
+custom_styles/pressed = SubResource( 7 )
+custom_styles/focus = SubResource( 8 )
+custom_styles/disabled = SubResource( 9 )
+custom_styles/normal = SubResource( 10 )
+toggle_mode = true
+icon = ExtResource( 3 )
 
-[node name="ModifyBtn" type="Button" parent="Control"]
+[node name="Sound" type="Button" parent="Control"]
 anchor_left = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-margin_left = -73.0
-margin_top = 241.0
-margin_right = 65.0
-margin_bottom = 300.0
+anchor_bottom = 1.0
+margin_left = -45.0
+margin_top = 208.0
+margin_right = 45.0
+margin_bottom = 298.0
+rect_pivot_offset = Vector2( 51, 48 )
 custom_fonts/font = ExtResource( 1 )
-text = "Modify"
+custom_styles/hover = SubResource( 6 )
+custom_styles/pressed = SubResource( 7 )
+custom_styles/focus = SubResource( 8 )
+custom_styles/disabled = SubResource( 9 )
+custom_styles/normal = SubResource( 10 )
+toggle_mode = true
+icon = ExtResource( 4 )
 
 [connection signal="pressed" from="." to="." method="_on_Node2D_pressed"]
 [connection signal="pressed" from="Control/OKButton" to="." method="_on_OKButton_pressed"]
-[connection signal="pressed" from="Control/ModifyBtn" to="." method="_on_OKButton_pressed"]
+[connection signal="pressed" from="Control/Music" to="." method="_on_Music_pressed"]
+[connection signal="pressed" from="Control/Sound" to="." method="_on_Sound_pressed"]

@@ -4,11 +4,17 @@ signal lucky_round_change
 signal new_lucky_round
 signal lucky_draw_finished(number, lucky_round)
 
+var drum_roll_asset = preload('res://assets/sound/drum-roll.mp3')
+var success_reward = preload('res://assets/sound/success-reward.mp3')
+
 var block_use := 100
 var block_count := 100
 var list_number: Array
 var lucky_draw_count := 0
 var list_rewarded: Array = []
+
+var currentNumOfSoundPlay = 0
+const SOUND_LIMIT_NUM = 10
 
 var current_block_id = null
 var lucky_block_distance = null
@@ -215,7 +221,7 @@ func star_lucky_draw():
 
 		next_block_id = next_block_id + 1
 
-	var block = blocks[next_block_id]
+	var block = blocks[next_block_id] as Control
 	var is_selected = block.get_meta("is_selected")
 	if is_selected:
 		star_lucky_draw()
@@ -224,6 +230,11 @@ func star_lucky_draw():
 	var anims = block.get_node("AnimationPlayer")
 
 	anims.play("Highlight")
+	if currentNumOfSoundPlay < SOUND_LIMIT_NUM:
+		var soundNode = block.get_node('Sound') as AudioStreamPlayer
+		soundNode.play()
+		if not soundNode.is_connected("finished", self, "on_sound_highlight_completed"):
+			soundNode.connect("finished", self, "on_sound_highlight_completed")
 
 	# Delay by lucky_round
 	var delay = 0.003
@@ -234,6 +245,13 @@ func star_lucky_draw():
 
 	if lucky_draw_count > lucky_block_distance - 10 and lucky_draw_count != lucky_block_distance:
 		delay += pow(1.35, lucky_draw_count - (lucky_block_distance - 10)) * 0.1
+		
+		# 4 seconds
+		if lucky_draw_count == lucky_block_distance - 3:
+			var sound = $Sound as AudioStreamPlayer
+			if !sound.is_playing():
+				sound.stream = drum_roll_asset
+				sound.play()
 
 	if lucky_block_distance == lucky_draw_count:
 		delay = 0.5
@@ -249,6 +267,8 @@ func star_lucky_draw():
 	if not timer.is_connected("timeout", self, "on_luckey_draw_finished"):
 		timer.connect("timeout", self, "on_luckey_draw_finished", [block])
 
+func on_sound_highlight_completed():
+	currentNumOfSoundPlay-=1
 
 func on_luckey_draw_finished(block):
 	var state = get_meta("state")
@@ -263,6 +283,11 @@ func on_luckey_draw_finished(block):
 		var anims = block.get_node("AnimationPlayer")
 		anims.play("Flash")
 		anims.connect("animation_finished", self, "on_flash_finished", [block])
+		
+		var sound = $Sound as AudioStreamPlayer
+		sound.stream = success_reward
+		sound.play()
+		
 		return
 
 	star_lucky_draw()
@@ -277,7 +302,7 @@ func on_flash_finished(_anim_name, block):
 	var roundText = block.get_node("Round")
 
 	roundText.visible = true
-	roundText.text = "V�ng " + str(lucky_round)
+	roundText.text = "Vòng " + str(lucky_round)
 
 	block.set_meta("is_selected", true)
 
