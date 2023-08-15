@@ -6,6 +6,7 @@ signal lucky_draw_finished(number, lucky_round)
 
 var drum_roll_asset = preload('res://assets/sound/drum-roll.mp3')
 var success_reward = preload('res://assets/sound/success-reward.mp3')
+var completed_sound = preload('res://assets/sound/level_complete.mp3')
 
 var block_use := 100
 var block_count := 100
@@ -319,6 +320,10 @@ func on_flash_finished(_anim_name, block):
 
 	print(list_number)
 	emit_signal("lucky_draw_finished", number, lucky_round)
+	
+	var sound = $Sound as AudioStreamPlayer
+	sound.stream = completed_sound
+	sound.play()
 
 
 func play_anim_waiting():
