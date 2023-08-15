@@ -27,7 +27,7 @@ visible = false
 anchor_right = 0.0
 stretch_mode = 4
 
-[node name="Frame" type="TextureRect" parent="."]
+[node name="Container" type="Control" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -35,16 +35,20 @@ anchor_bottom = 0.5
 margin_left = -579.0
 margin_top = -436.0
 margin_right = 579.0
-margin_bottom = 450.0
+margin_bottom = 436.0
+
+[node name="Frame" type="TextureRect" parent="Container"]
+margin_right = 1158.0
+margin_bottom = 872.0
 texture = ExtResource( 4 )
 
-[node name="TopLights" parent="Frame" instance=ExtResource( 6 )]
+[node name="TopLights" parent="Container/Frame" instance=ExtResource( 6 )]
 margin_left = 9.0
 margin_top = 6.0
 margin_right = 1144.0
 margin_bottom = 24.0
 
-[node name="BottomLights" parent="Frame" instance=ExtResource( 6 )]
+[node name="BottomLights" parent="Container/Frame" instance=ExtResource( 6 )]
 visible = false
 margin_left = 15.0
 margin_top = 851.0
@@ -52,7 +56,7 @@ margin_right = 1150.0
 margin_bottom = 869.0
 direction = "right"
 
-[node name="Board" parent="Frame" instance=ExtResource( 2 )]
+[node name="Board" parent="Container/Frame" instance=ExtResource( 2 )]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 280.0
@@ -60,20 +64,20 @@ margin_top = 248.0
 margin_right = -170.0
 margin_bottom = -43.0
 
-[node name="TextureRect" type="TextureRect" parent="Frame"]
+[node name="TextureRect" type="TextureRect" parent="Container/Frame"]
 margin_left = 764.0
 margin_top = 73.0
 margin_right = 1157.0
 margin_bottom = 218.0
 texture = ExtResource( 10 )
 
-[node name="Title" parent="Frame" instance=ExtResource( 7 )]
+[node name="Title" parent="Container/Frame" instance=ExtResource( 7 )]
 margin_left = 794.0
 margin_top = 94.0
 margin_right = -3.0
 margin_bottom = 181.0
 
-[node name="Logo" type="TextureButton" parent="Frame"]
+[node name="Logo" type="TextureButton" parent="Container/Frame"]
 anchor_left = 0.836788
 anchor_top = 0.838303
 anchor_right = 0.836788
@@ -89,18 +93,26 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="LuckyPopup" parent="Frame" instance=ExtResource( 8 )]
-script = ExtResource( 9 )
-
-[node name="DebugTool" parent="Frame" instance=ExtResource( 11 )]
+[node name="DebugTool" parent="Container/Frame" instance=ExtResource( 11 )]
 margin_left = 469.0
 margin_top = 178.0
 margin_right = 684.0
 margin_bottom = 218.0
 
-[connection signal="lucky_draw_finished" from="Frame/Board" to="Frame/LuckyPopup" method="_on_Board_lucky_draw_finished"]
-[connection signal="lucky_round_change" from="Frame/Board" to="Frame/Title" method="_on_Board_lucky_round_change"]
-[connection signal="new_lucky_round" from="Frame/Board" to="Frame/LuckyPopup" method="_on_Board_new_lucky_round"]
-[connection signal="change_round" from="Frame/Title" to="Frame/Board" method="_on_Title_change_round"]
-[connection signal="pressed" from="Frame/Logo" to="Frame/Board" method="_on_Logo_pressed"]
-[connection signal="change_player_number" from="Frame/DebugTool" to="Frame/Board" method="_on_DebugTool_change_player_number"]
+[node name="LuckyPopup" parent="Container" instance=ExtResource( 8 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -579.0
+margin_top = -436.0
+margin_right = 579.0
+margin_bottom = 436.0
+script = ExtResource( 9 )
+
+[connection signal="lucky_draw_finished" from="Container/Frame/Board" to="Container/LuckyPopup" method="_on_Board_lucky_draw_finished"]
+[connection signal="lucky_round_change" from="Container/Frame/Board" to="Container/Frame/Title" method="_on_Board_lucky_round_change"]
+[connection signal="new_lucky_round" from="Container/Frame/Board" to="Container/LuckyPopup" method="_on_Board_new_lucky_round"]
+[connection signal="change_round" from="Container/Frame/Title" to="Container/Frame/Board" method="_on_Title_change_round"]
+[connection signal="pressed" from="Container/Frame/Logo" to="Container/Frame/Board" method="_on_Logo_pressed"]
+[connection signal="change_player_number" from="Container/Frame/DebugTool" to="Container/Frame/Board" method="_on_DebugTool_change_player_number"]
