@@ -36,7 +36,7 @@ tracks/0/keys = {
 
 [node name="Confetti" type="TextureRect"]
 anchor_right = 1.0
-margin_right = 1158.0
+margin_right = 2316.0
 margin_bottom = 157.0
 texture = ExtResource( 1 )
 

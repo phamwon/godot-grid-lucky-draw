@@ -19,15 +19,11 @@ var music_on_asset = preload(music_on_path)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
+	$Control.visible = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
-
-func _process(delta):
-	pass
 
 func _on_Node2D_pressed():
 	if $Control.visible:

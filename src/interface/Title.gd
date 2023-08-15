@@ -25,6 +25,6 @@ func _on_Board_lucky_round_change(round_level):
 	elif round_level == 2:
 		$Label.set_text('VÒNG 2')
 	else:
-		$Label.set_text('VÒNG ĐẶC BIỆT')
+		$Label.set_text('Vòng Đặc Biệt')
 	
 	print(round_level)

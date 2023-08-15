@@ -149,9 +149,13 @@ rect_pivot_offset = Vector2( 579, 436 )
 input_pass_on_modal_close_click = false
 
 [node name="Mask" type="ColorRect" parent="."]
-margin_right = 1158.0
-margin_bottom = 872.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -989.0
+margin_right = 989.0
 rect_pivot_offset = Vector2( 1887, 590 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
 color = Color( 0, 0, 0, 0 )
 
 [node name="Popup" type="TextureRect" parent="."]
