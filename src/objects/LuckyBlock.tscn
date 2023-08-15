@@ -140,13 +140,13 @@ tracks/4/keys = {
 "values": [ false ]
 }
 
-[node name="LuckyPopup" type="Popup"]
+[node name="LuckyPopup" type="Control"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_min_size = Vector2( 240, 240 )
-rect_pivot_offset = Vector2( 239, 329 )
+rect_pivot_offset = Vector2( 579, 436 )
 input_pass_on_modal_close_click = false
-popup_exclusive = true
 
 [node name="Mask" type="ColorRect" parent="."]
 margin_right = 1158.0

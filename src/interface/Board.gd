@@ -58,7 +58,7 @@ func random_number():
 			continue
 
 		block.set_meta("number", list_number[x])
-		
+
 		if list_rewarded.has(list_number[x]):
 			# handle reset number of player
 			block.set_meta("is_selected", true)
@@ -66,7 +66,7 @@ func random_number():
 			numberLabel.text = str(list_number[x])
 			var anims = block.get_node("AnimationPlayer")
 			anims.play("Flash")
-			
+
 			list_number.erase(list_number[x])
 		else:
 			x += 1
@@ -135,9 +135,10 @@ func _on_Logo_pressed():
 			star_lucky_draw()
 
 		"lucky_draw":
+			set_meta("state", "waiting")
 			stop_anims()
-			lucky_draw_count = 0
-			star_lucky_draw()
+			random_number()
+			play_anim_random_number()
 
 		"finished":
 			set_meta("state", "open")
@@ -276,7 +277,7 @@ func on_flash_finished(_anim_name, block):
 	var roundText = block.get_node("Round")
 
 	roundText.visible = true
-	roundText.text = "Vòng " + str(lucky_round)
+	roundText.text = "V�ng " + str(lucky_round)
 
 	block.set_meta("is_selected", true)
 
