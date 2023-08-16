@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://src/MagicGame.vs" type="Script" id=1]
 [ext_resource path="res://src/interface/Board.tscn" type="PackedScene" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://assets/image/bg-color.jpg" type="Texture" id=12]
 [ext_resource path="res://src/Fullscreen.gd" type="Script" id=13]
 [ext_resource path="res://assets/sound/Archetype.wav" type="AudioStream" id=14]
+[ext_resource path="res://src/Music.gd" type="Script" id=15]
 
 [node name="MagicGame" type="Node"]
 script = ExtResource( 1 )
@@ -134,12 +135,16 @@ script = ExtResource( 9 )
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 14 )
+volume_db = -80.0
 autoplay = true
 bus = "Music"
+script = ExtResource( 15 )
 
 [connection signal="lucky_draw_finished" from="Container/Frame/Board" to="Container/LuckyPopup" method="_on_Board_lucky_draw_finished"]
 [connection signal="lucky_round_change" from="Container/Frame/Board" to="Container/Frame/Title" method="_on_Board_lucky_round_change"]
 [connection signal="new_lucky_round" from="Container/Frame/Board" to="Container/LuckyPopup" method="_on_Board_new_lucky_round"]
+[connection signal="request_resume_music" from="Container/Frame/Board" to="Music" method="_on_Board_request_resume_music"]
+[connection signal="request_stop_music" from="Container/Frame/Board" to="Music" method="_on_Board_request_stop_music"]
 [connection signal="change_round" from="Container/Frame/Title" to="Container/Frame/Board" method="_on_Title_change_round"]
 [connection signal="pressed" from="Container/Frame/Logo" to="Container/Frame/Board" method="_on_Logo_pressed"]
 [connection signal="change_player_number" from="Container/Frame/DebugTool" to="Container/Frame/Board" method="_on_DebugTool_change_player_number"]
