@@ -233,6 +233,7 @@ func star_lucky_draw():
 
 	anims.play("Highlight")
 	if currentNumOfSoundPlay < SOUND_LIMIT_NUM:
+		currentNumOfSoundPlay += 1
 		var soundNode = block.get_node('Sound') as AudioStreamPlayer
 		soundNode.play()
 		if not soundNode.is_connected("finished", self, "on_sound_highlight_completed"):
