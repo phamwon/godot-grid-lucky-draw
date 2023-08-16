@@ -5,7 +5,7 @@
 [ext_resource path="res://assets/font/Roboto-Black.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://assets/image/logo-text.png" type="Texture" id=4]
 [ext_resource path="res://assets/image/star-shine.png" type="Texture" id=5]
-[ext_resource path="res://assets/sound/combo_1.mp3" type="AudioStream" id=6]
+[ext_resource path="res://assets/sound/short-success-sound-glockenspiel-treasure-video-game-6346.mp3" type="AudioStream" id=6]
 
 [sub_resource type="DynamicFont" id=8]
 size = 15

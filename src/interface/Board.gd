@@ -251,6 +251,7 @@ func star_lucky_draw():
 		
 		# 4 seconds
 		if lucky_draw_count == lucky_block_distance - 3:
+			AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), true)
 			var sound = $Sound as AudioStreamPlayer
 			if !sound.is_playing():
 				sound.stream = drum_roll_asset
@@ -325,12 +326,14 @@ func on_flash_finished(_anim_name, block):
 	var sound = $Sound as AudioStreamPlayer
 	sound.stream = completed_sound
 	sound.play()
-
+	
 
 func play_anim_waiting():
 	var state = get_meta("state")
 	if not state == "open":
 		return
+		
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), false)
 
 	var blocks = get_tree().get_nodes_in_group("blocks")
 
